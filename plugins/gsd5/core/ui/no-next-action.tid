@@ -9,7 +9,26 @@ The following Projects are without a next Action.  They should be examined for t
 Projects without Next Actions
 
 -----
+<!-- No/All Realm -->
+<$reveal state="$:/currentRealm" type="match" text="all" default="all">
+<$list filter="[field:gsd_type[project]!field:gsd_status[future]!field:gsd_complete[true]] -[field:gsd_type[action]field:gsd_status[next]!field:gsd_complete[true]_fieldvalue[gsd_project]]">
+<div class="tw-menu-list-subitem">
+<$complete tiddler=<<currentTiddler>>/>
+<$transclude tiddler="$:/plugins/gsd5/core/ui/lists/ListViewStatus"/>
+<span class="list-link">
+<$link to={{!!title}}>
+<$view field="title"/>
+</$link>
+</span>
+<$list filter=[is[current]!field:text[]]>
+&nbsp;<$transclude tiddler="$:/plugins/gsd5/core/images/excerpt"/>
+</$list>
+</div>
+</$list>
+</$reveal>
 
+<!-- Realm -->
+<$reveal state="$:/currentRealm" type="nomatch" text="all" default="all">
 <$list filter="[field:gsd_type[project]field:gsd_realm{$:/currentRealm}!field:gsd_status[future]!field:gsd_complete[true]] -[field:gsd_type[action]field:gsd_status[next]!field:gsd_complete[true]_fieldvalue[gsd_project]]">
 <div class="tw-menu-list-subitem">
 <$complete tiddler=<<currentTiddler>>/>
@@ -24,3 +43,5 @@ Projects without Next Actions
 </$list>
 </div>
 </$list>
+</$reveal>
+
